@@ -17,6 +17,7 @@ def account(request):
             email = request.POST.get('email')
             address = request.POST.get('address')
             phone = request.POST.get('phone')
+
             #creates user accounts
             user = User.objects.create_user(
                 username=username,
@@ -27,6 +28,7 @@ def account(request):
 
             #creates customer account
             customer = Customer.objects.create(
+                name=username,
                 user=user,
                 phone=phone,
                 address=address

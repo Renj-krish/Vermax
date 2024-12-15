@@ -9,7 +9,9 @@
             <li><a href="{% url 'product_list' %}">Products</a></li>
             {% if not user.is_authenticated %}
             <li><a href="{% url 'account' %}">Account</a></li>
+            <li><a href="{% url 'orders' %}">Orders</a></li>
             {% else %}
+            <li><a href="{% url 'orders' %}">Orders</a></li>
             <li><a href="{% url 'logout' %}">logout</a></li>
             {% endif %}
         </ul>

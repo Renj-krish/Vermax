@@ -10,11 +10,11 @@ class Customer(models.Model):
     DELETE_CHOICES=((LIVE,'Live'),(DELETE,'Delete')) #tuples
     name=models.CharField(max_length=50)
     address=models.TextField()
-    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='customer_profile')
+    user=models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer_profile')
     phone=models.CharField(max_length=10)
     delete_status=models.IntegerField(choices=DELETE_CHOICES,default=LIVE)
     created_at=models.DateTimeField(auto_now_add=True)  #Shows when product was added automatically
     updated_at=models.DateTimeField(auto_now=True)
     
     def __str__(self) -> str:
-        return self.title
+        return self.user.username

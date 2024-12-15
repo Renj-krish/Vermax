@@ -22,12 +22,16 @@ class Order(models.Model):
     
     order_status=models.IntegerField(choices=STATUS_CHOICE,default=CART_STAGE) #status will be on cart stage in the begining
     owner= models.ForeignKey(Customer,on_delete=models.SET_NULL,null=True,related_name='orders')
-
+    total_price=models.FloatField(default=0)
     delete_status=models.IntegerField(choices=DELETE_CHOICES,default=LIVE)
     created_at=models.DateTimeField(auto_now_add=True)  #Shows when product was added automatically
     updated_at=models.DateTimeField(auto_now=True)
 
-class OrderedItem(models.Model):  #class for ordered products
+    def __str__(self):
+
+        return "order-{}-{}".format(self.id,self.owner.name)
+
+class OrderedItem(models.Model):  #model for ordered products
     product=models.ForeignKey(Product,related_name='added_carts',on_delete=models.SET_NULL,null=True)
     quantity=models.IntegerField(default=1)
     owner=models.ForeignKey(Order,on_delete=models.CASCADE,related_name='added_items')
